@@ -75,26 +75,48 @@
     <form id="searchForm">
     <div class="container-select">
         <div class="select">
-        <?php
-            require_once ("../frontApi/config.php");
+            <?php
+            require_once("../frontApi/config.php");
             if ($err) {
-	            echo "cURL Error #:" . $err;
+                echo "cURL Error #:" . $err;
             } else {
-	            $objeto = json_decode($response);
-	            //print_r($objeto);
+                $objeto = json_decode($response);
+
+                // Función de comparación para ordenar los IDs de usuario de menor a mayor
+                function comparar_id_usuario($a, $b) {
+                    return $a->user_id - $b->user_id;
+                }
+
+                // Ordenar el array de objetos por el ID de usuario
+                usort($objeto, 'comparar_id_usuario');
+
+                // Array para almacenar los IDs de usuario que ya se han agregado
+                $ids_agregados = array();
+
+                ?>
+                <select class="form-select" aria-label="Default select example" name="user" require="" width="100px">
+                    <option selected>--Seleccione el usuario--</option>
+                    <?php
+                    foreach ($objeto as $reg) {
+                        // Verificar si el ID de usuario ya se ha agregado antes
+                        if (!in_array($reg->user_id, $ids_agregados)) {
+                            $ids_agregados[] = $reg->user_id; // Agregar el ID de usuario al array de IDs agregados
+                            ?>
+                            <option value="<?php echo $reg->user_id; ?>">
+                                <?php echo "ID USER: ", $reg->user_id; ?>
+                            </option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <button class="btn btn-primary" name='search' type="submit">Buscar</button>
+                <?php
+            }
             ?>
-            <select class="form-select" aria-label="Default select example" name="user" require="" width="100px">
-                <option selected>Seleccionar</option>
-            <?php 
-                foreach ($objeto as $reg) {?>
-            <option value="<?php echo $reg->user_id; ?>"><?php echo "ID: ", $reg->user_id; ?></option>
-            <?php } ?>
-    </select>
-    <button class="btn btn-primary" name='search' type="submit">Buscar</button>
-<?php
-}
-?>
-    </form>
+        </div>
+    </div>
+</form>
 
         </div>
     </div>
