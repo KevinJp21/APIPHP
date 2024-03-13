@@ -6,7 +6,7 @@
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://gorest.co.in/public/v2/posts",
+	CURLOPT_URL => "https://gorest.co.in/public/v2/users",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
