@@ -69,6 +69,42 @@ if ($err) {
       </table>
             <?php
                 
+    }else{
+        ?>
+        <table class="table table-striped" id="user">
+    <thead>
+        <tr>
+           <th>ID</th>
+           <th>USER_ID</th>
+           <th>TITLE</th>
+           <th>BODY</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      
+        <?php
+
+                ?>
+                <tr>
+                 <td>No hay datos</td> 
+                 <td>No hay datos</td> 
+                 <td>No hay datos</td>  
+                 <td>No hay datos</td>  
+               </tr>  
+               <?php 
+        ?>
+        </tbody>
+        <tfoot>
+        <tr>
+               <th>ID</th>
+               <th>USER_ID</th>
+               <th>TITLE</th>
+               <th>BODY</th>
+            </tr>
+        </tfoot>
+      </table>
+        <?php
     }
     }
    ?>
