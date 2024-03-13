@@ -26,7 +26,6 @@ if ($err) {
             curl_close($curll);
            
             $posts = json_decode($responsePost);
-            print_r($posts);
             
         ?>
         <table class="table table-striped" id="user">
